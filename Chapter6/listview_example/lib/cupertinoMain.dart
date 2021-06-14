@@ -5,7 +5,7 @@ import 'iosSub/cupertinoFirstPage.dart';
 import 'iosSub/cupertinoSecondPage.dart';
 
 
-List<Animal> favoriteList = List();
+List<Animal> favoriteList = List.empty(growable: true);
 
 class CupertinoMain extends StatefulWidget {
   @override
@@ -15,8 +15,8 @@ class CupertinoMain extends StatefulWidget {
 }
 
 class _CupertinoMain extends State<CupertinoMain> {
-  CupertinoTabBar tabBar;
-  List<Animal> animalList = List();
+  CupertinoTabBar? tabBar;
+  List<Animal> animalList = List.empty(growable: true);
 
 
   @override
@@ -49,7 +49,7 @@ class _CupertinoMain extends State<CupertinoMain> {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-      home: CupertinoTabScaffold(tabBar: tabBar, tabBuilder: (context , value){
+      home: CupertinoTabScaffold(tabBar: tabBar!, tabBuilder: (context , value){
         if(value == 0){
           return CupertinoFirstPage(animalList: animalList,);
         }else{

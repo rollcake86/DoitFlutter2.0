@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ThirdDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final String args = ModalRoute.of(context).settings.arguments;
+    final String args = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
       appBar: AppBar(

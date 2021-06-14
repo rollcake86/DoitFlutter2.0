@@ -5,7 +5,7 @@ import '../animalItem.dart';
 class CupertinoSecondPage extends StatefulWidget {
   final List<Animal> animalList;
 
-  const CupertinoSecondPage({Key key, this.animalList}) : super(key: key);
+  const CupertinoSecondPage({Key? key,required this.animalList}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -14,10 +14,10 @@ class CupertinoSecondPage extends StatefulWidget {
 }
 
 class _CupertinoSecondPage extends State<CupertinoSecondPage> {
-  TextEditingController _textController;
+  TextEditingController? _textController;
   int _kindChoice = 0;
   bool _flyExist = false;
-  String _imagePath;
+  String? _imagePath;
 
   Map<int, Widget> segmentWidgets = {
     0: SizedBox(
@@ -65,9 +65,9 @@ class _CupertinoSecondPage extends State<CupertinoSecondPage> {
                   padding: EdgeInsets.only(bottom: 20, top: 20),
                   groupValue: _kindChoice,
                   children: segmentWidgets,
-                  onValueChanged: (value) {
+                  onValueChanged: (int? value) {
                     setState(() {
-                      _kindChoice = value;
+                      _kindChoice = value!;
                     });
                   }),
               Row(
@@ -131,9 +131,9 @@ class _CupertinoSecondPage extends State<CupertinoSecondPage> {
                   child: Text('동물 추가하기'),
                   onPressed: () {
                     widget.animalList.add(Animal(
-                        animalName: _textController.value.text,
+                        animalName: _textController!.value.text,
                         kind: getKind(_kindChoice),
-                        imagePath: _imagePath,
+                        imagePath: _imagePath!,
                         flyExist: _flyExist));
                   })
             ],

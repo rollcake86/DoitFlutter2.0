@@ -23,21 +23,21 @@ class HttpApp extends StatefulWidget {
 
 class _HttpApp extends State<HttpApp> {
   String result = '';
-  TextEditingController _editingController;
-  ScrollController _scrollController;
-  List data;
+  TextEditingController? _editingController;
+  ScrollController? _scrollController;
+  List? data;
   int page = 1;
 
   @override
   void initState() {
     super.initState();
-    data = new List();
+    data = new List.empty(growable: true);
     _editingController = new TextEditingController();
     _scrollController = new ScrollController();
-    _scrollController.addListener(() {
-      if (_scrollController.offset >=
-              _scrollController.position.maxScrollExtent &&
-          !_scrollController.position.outOfRange) {
+    _scrollController!.addListener(() {
+      if (_scrollController!.offset >=
+              _scrollController!.position.maxScrollExtent &&
+          !_scrollController!.position.outOfRange) {
         print('bottom');
         page++;
         getJSONData();
@@ -59,7 +59,7 @@ class _HttpApp extends State<HttpApp> {
       ),
       body: Container(
         child: Center(
-          child: data.length == 0
+          child: data!.length == 0
               ? Text(
                   '데이터가 존재하지 않습니다.\n검색해주세요',
                   style: TextStyle(fontSize: 20),
@@ -72,7 +72,7 @@ class _HttpApp extends State<HttpApp> {
                         child: Row(
                           children: <Widget>[
                             Image.network(
-                              data[index]['thumbnail'],
+                              data![index]['thumbnail'],
                               height: 100,
                               width: 100,
                               fit: BoxFit.contain,
@@ -83,16 +83,16 @@ class _HttpApp extends State<HttpApp> {
                                   width:
                                       MediaQuery.of(context).size.width - 150,
                                   child: Text(
-                                    data[index]['title'].toString(),
+                                    data![index]['title'].toString(),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
                                 Text(
-                                    '저자 : ${data[index]['authors'].toString()}'),
+                                    '저자 : ${data![index]['authors'].toString()}'),
                                 Text(
-                                    '가격 : ${data[index]['sale_price'].toString()}'),
+                                    '가격 : ${data![index]['sale_price'].toString()}'),
                                 Text(
-                                    '판매중 : ${data[index]['status'].toString()}'),
+                                    '판매중 : ${data![index]['status'].toString()}'),
                               ],
                             )
                           ],
@@ -101,7 +101,7 @@ class _HttpApp extends State<HttpApp> {
                       ),
                     );
                   },
-                  itemCount: data.length,
+                  itemCount: data!.length,
                   controller: _scrollController,
                 ),
         ),
@@ -109,7 +109,7 @@ class _HttpApp extends State<HttpApp> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           page = 1;
-          data.clear();
+          data!.clear();
           getJSONData();
         },
         child: Icon(Icons.search),
@@ -119,7 +119,7 @@ class _HttpApp extends State<HttpApp> {
 
   Future<String> getJSONData() async {
     var url =
-        'https://dapi.kakao.com/v3/search/book?target=title&page=$page&query=${_editingController.value.text}';
+        'https://dapi.kakao.com/v3/search/book?target=title&page=$page&query=${_editingController!.value.text}';
 
     var response = await http.get(Uri.parse(url),
         headers: {"Authorization": "KakaoAK aa51bf3d875ea350a1d8bd05de36d8b8"});
@@ -129,7 +129,7 @@ class _HttpApp extends State<HttpApp> {
     setState(() {
       var dataConvertedToJSON = json.decode(response.body);
       List result = dataConvertedToJSON['documents'];
-      data.addAll(result);
+      data!.addAll(result);
     });
     return response.body;
   }

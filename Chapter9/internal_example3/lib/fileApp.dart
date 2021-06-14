@@ -10,7 +10,7 @@ class FileApp extends StatefulWidget {
 
 class _FileApp extends State<FileApp> {
   int _count = 0;
-  List<String> itemList = new List();
+  List<String> itemList = new List.empty(growable: true);
   TextEditingController controller= new TextEditingController();
 
   @override
@@ -88,10 +88,10 @@ class _FileApp extends State<FileApp> {
   }
 
   Future<List<String>> readListFile() async {
-    List<String> itemList = new List();
+    List<String> itemList = new List.empty(growable: true);
     var key = "first";
     SharedPreferences pref = await SharedPreferences.getInstance();
-    bool firstCheck = pref.getBool(key);
+    bool? firstCheck = pref.getBool(key);
     var dir = await getApplicationDocumentsDirectory();
     bool fileExist = await File(dir.path + '/fruit.txt').exists();
 

@@ -26,7 +26,7 @@ class AnimationApp extends StatefulWidget {
 
 class _AnimationApp extends State<AnimationApp> {
 
-  List<People> peoples = new List();
+  List<People> peoples = new List.empty(growable: true);
   int current = 0;
   Color weightColor = Colors.blue;
   double _opacity = 1;

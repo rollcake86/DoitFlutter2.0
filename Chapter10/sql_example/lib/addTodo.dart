@@ -13,8 +13,8 @@ class AddTodoApp extends StatefulWidget {
 }
 
 class _AddTodoApp extends State<AddTodoApp> {
-  TextEditingController titleController;
-  TextEditingController contentController;
+  TextEditingController? titleController;
+  TextEditingController? contentController;
 
   @override
   void initState() {
@@ -50,8 +50,8 @@ class _AddTodoApp extends State<AddTodoApp> {
               MaterialButton(
                 onPressed: (){
                   Todo todo = Todo(
-                      title: titleController.value.text,
-                      content: contentController.value.text,
+                      title: titleController!.value.text,
+                      content: contentController!.value.text,
                       active: false);
                   Navigator.of(context).pop(todo);
                 },

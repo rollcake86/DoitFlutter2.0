@@ -8,8 +8,7 @@ class Item {
 }
 
 class Area {
-  List<DropdownMenuItem> seoulArea = List.empty(growable: true);
-
+  List<DropdownMenuItem<Item>> seoulArea = List.empty(growable: true);
   Area() {
     seoulArea.add(DropdownMenuItem(
       child: Text('강남구'),
@@ -116,7 +115,7 @@ class Area {
 }
 
 class Kind {
-  List<DropdownMenuItem> kinds = List.empty(growable: true);
+  List<DropdownMenuItem<Item>> kinds = List.empty(growable: true);
 
   Kind() {
     kinds.add(DropdownMenuItem(

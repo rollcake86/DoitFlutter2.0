@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
 }
 
 class WidgetApp extends StatefulWidget {
-  WidgetApp({Key key}) : super(key: key);
+  WidgetApp({Key? key}) : super(key: key);
 
   @override
   _WidgetExampleState createState() => _WidgetExampleState();
@@ -23,8 +23,8 @@ class WidgetApp extends StatefulWidget {
 
 class _WidgetExampleState extends State<WidgetApp> {
   List _buttonList = ['더하기', '빼기', '곱하기', '나누기'];
-  List<DropdownMenuItem<String>> _dropDownMenuItems = new List();
-  String buttonText;
+  List<DropdownMenuItem<String>> _dropDownMenuItems = new List.empty(growable: true);
+  String? buttonText;
   String sum = '';
   TextEditingController value1 = TextEditingController();
   TextEditingController value2 = TextEditingController();
@@ -72,7 +72,7 @@ class _WidgetExampleState extends State<WidgetApp> {
                 padding: EdgeInsets.all(15),
                 child: MaterialButton(
                     child: Row(
-                      children: <Widget>[Icon(Icons.add), Text(buttonText)],
+                      children: <Widget>[Icon(Icons.add), Text(buttonText!)],
                     ),
                     color: Colors.amber,
                     onPressed: () {
@@ -97,7 +97,7 @@ class _WidgetExampleState extends State<WidgetApp> {
                 padding: EdgeInsets.all(15),
                 child: DropdownButton(
                   items: _dropDownMenuItems,
-                  onChanged: (value) {
+                  onChanged: (String? value) {
                     setState(() {
                       buttonText = value;
                     });

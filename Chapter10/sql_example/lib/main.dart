@@ -53,7 +53,7 @@ class DatabaseApp extends StatefulWidget {
 }
 
 class _DatabaseApp extends State<DatabaseApp> {
-  Future<List<Todo>> todoList;
+  Future<List<Todo>>? todoList;
 
   @override
   void initState() {
@@ -65,7 +65,7 @@ class _DatabaseApp extends State<DatabaseApp> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Database Example'), actions: <Widget>[
-          FlatButton(
+          MaterialButton(
               onPressed: () async {
                 await Navigator.of(context).pushNamed('/clear');
                 setState(() {
@@ -92,16 +92,16 @@ class _DatabaseApp extends State<DatabaseApp> {
                     if (snapshot.hasData) {
                       return ListView.builder(
                         itemBuilder: (context, index) {
-                          Todo todo = snapshot.data[index];
+                          Todo todo = (snapshot.data as List<Todo>)[index];
                           return ListTile(
                             title: Text(
-                              todo.title,
+                              todo.title!,
                               style: TextStyle(fontSize: 20),
                             ),
                             subtitle: Container(
                               child: Column(
                                 children: <Widget>[
-                                  Text(todo.content),
+                                  Text(todo.content!),
                                   Text('체크 : ${todo.active.toString()}'),
                                   Container(
                                     height: 1,
@@ -162,13 +162,11 @@ class _DatabaseApp extends State<DatabaseApp> {
                                       ],
                                     );
                                   });
-                              if (result != null) {
-                                _deleteTodo(result);
-                              }
+                              _deleteTodo(result);
                             },
                           );
                         },
-                        itemCount: snapshot.data.length,
+                        itemCount: (snapshot.data as List<Todo>).length,
                       );
                     } else {
                       return Text('No data');
@@ -184,10 +182,8 @@ class _DatabaseApp extends State<DatabaseApp> {
           children: <Widget>[
             FloatingActionButton(
               onPressed: () async {
-                final todo = await Navigator.of(context).pushNamed('/add');
-                if (todo != null) {
-                  _insertTodo(todo);
-                }
+                final todo = await Navigator.of(context).pushNamed('/add') as Todo;
+                _insertTodo(todo);
               },
               heroTag: null,
               child: Icon(Icons.add),

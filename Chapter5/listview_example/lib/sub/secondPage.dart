@@ -4,7 +4,7 @@ import '../animalItem.dart';
 class SecondApp extends StatefulWidget {
   List<Animal> list;
 
-  SecondApp({Key key, @required this.list}) : super(key: key);
+  SecondApp({Key? key, required this.list}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SecondApp();
@@ -44,9 +44,9 @@ class _SecondApp extends State<SecondApp> {
                 Text('날수 있나요?'),
                 Checkbox(
                     value: flyExist,
-                    onChanged: (check) {
+                    onChanged: (bool? check) {
                       setState(() {
-                        flyExist = check;
+                        flyExist = check!;
                       });
                     })
               ], mainAxisAlignment: MainAxisAlignment.spaceAround),
@@ -131,9 +131,9 @@ class _SecondApp extends State<SecondApp> {
     );
   }
 
-  _radioChange(int value) {
+  _radioChange(int? value) {
     setState(() {
-      _radioValue = value;
+      _radioValue = value!;
     });
   }
 

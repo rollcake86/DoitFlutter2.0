@@ -8,10 +8,10 @@ class SecondPage extends StatefulWidget {
 
 class _SecondPage extends State<SecondPage>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation _rotateAnimation;
-  Animation _scaleAnimation;
-  Animation _transAnimation;
+  AnimationController? _animationController;
+  Animation? _rotateAnimation;
+  Animation? _scaleAnimation;
+  Animation? _transAnimation;
 
   @override
   void initState() {
@@ -19,16 +19,16 @@ class _SecondPage extends State<SecondPage>
     _animationController =
         AnimationController(duration: Duration(seconds: 5), vsync: this);
     _rotateAnimation =
-        Tween<double>(begin: 0, end: pi * 10).animate(_animationController);
+        Tween<double>(begin: 0, end: pi * 10).animate(_animationController!);
     _scaleAnimation =
-        Tween<double>(begin: 1, end: 0).animate(_animationController);
+        Tween<double>(begin: 1, end: 0).animate(_animationController!);
     _transAnimation = Tween<Offset>(begin: Offset(0, 0), end: Offset(200, 200))
-        .animate(_animationController);
+        .animate(_animationController!);
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _animationController!.dispose();
     super.dispose();
   }
 
@@ -43,14 +43,14 @@ class _SecondPage extends State<SecondPage>
           child: Column(
             children: <Widget>[
               AnimatedBuilder(
-                animation: _rotateAnimation,
+                animation: _rotateAnimation!,
                 builder: (context, widget) {
                   return Transform.translate(
-                    offset: _transAnimation.value,
+                    offset: _transAnimation!.value,
                     child: Transform.rotate(
-                        angle: _rotateAnimation.value,
+                        angle: _rotateAnimation!.value,
                         child: Transform.scale(
-                          scale: _scaleAnimation.value,
+                          scale: _scaleAnimation!.value,
                           child: widget,
                         )),
                   );
@@ -64,7 +64,7 @@ class _SecondPage extends State<SecondPage>
               ),
               MaterialButton(
                 onPressed: () {
-                  _animationController.forward();
+                  _animationController!.forward();
                 },
                 child: Text('로테이션 시작하기'),
               ),

@@ -5,7 +5,7 @@ import '../cupertinoMain.dart';
 class CupertinoFirstPage extends StatelessWidget {
   final List<Animal> animalList;
 
-  const CupertinoFirstPage({Key key, @required this.animalList})
+  const CupertinoFirstPage({Key? key, required this.animalList})
       : super(key: key);
 
   @override

@@ -19,8 +19,8 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPage extends State<MapPage> {
-  List<DropdownMenuItem> list = List.empty(growable: true);
-  List<DropdownMenuItem> sublist = List.empty(growable: true);
+  List<DropdownMenuItem<Item>> list = List.empty(growable: true);
+  List<DropdownMenuItem<Item>> sublist = List.empty(growable: true);
   List<TourData> tourData = List.empty(growable: true);
   ScrollController? _scrollController;
   String authKey = '### 오픈 API 키(일반 인증키) ###';
@@ -58,27 +58,28 @@ class _MapPage extends State<MapPage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  DropdownButton(
-                    items: list,
-                    // onChanged: (value) {
-                      // Item selectedItem = value;
-                      // setState(() {
-                      //   area = selectedItem;
-                      // });
-                    // },
+                  DropdownButton<Item>(
                     value: area,
+                    onChanged: (value) {
+                      Item selectedItem = value!;
+                      setState(() {
+                        area = selectedItem;
+                      });
+                    },
+                    items: list,
+                    // items: list,
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  DropdownButton(
+                  DropdownButton<Item>(
                     items: sublist,
-                    // onChanged: (value) {
-                    //   Item? selectedItem = value as Item?;
-                    //   setState(() {
-                    //     kind = selectedItem;
-                    //   });
-                    // },
+                    onChanged: (value) {
+                      Item selectedItem = value!;
+                      setState(() {
+                        kind = selectedItem;
+                      });
+                    },
                     value: kind,
                   ),
                   SizedBox(

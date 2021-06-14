@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
 }
 
 class FirebaseApp extends StatefulWidget {
-  FirebaseApp({Key key, this.analytics, this.observer}) : super(key: key);
+  FirebaseApp({Key? key,required this.analytics,required this.observer}) : super(key: key);
   final FirebaseAnalytics analytics;
   final FirebaseAnalyticsObserver observer;
 

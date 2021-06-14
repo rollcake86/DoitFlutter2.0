@@ -15,7 +15,7 @@ class _TabsPage extends State<TabsPage>
   _TabsPage(this.observer);
 
   final FirebaseAnalyticsObserver observer;
-  TabController _controller;
+  TabController? _controller;
   int selectedIndex = 0;
 
   final List<Tab> tabs = <Tab>[
@@ -31,10 +31,10 @@ class _TabsPage extends State<TabsPage>
       length: tabs.length,
       initialIndex: selectedIndex,
     );
-    _controller.addListener(() {
+    _controller!.addListener(() {
       setState(() {
-        if (selectedIndex != _controller.index) {
-          selectedIndex = _controller.index;
+        if (selectedIndex != _controller!.index) {
+          selectedIndex = _controller!.index;
           _sendCurrentTab();
         }
       });
@@ -45,7 +45,6 @@ class _TabsPage extends State<TabsPage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    observer.subscribe(this, ModalRoute.of(context));
   }
 
   @override
@@ -69,7 +68,7 @@ class _TabsPage extends State<TabsPage>
       body: TabBarView(
         controller: _controller,
         children: tabs.map((Tab tab) {
-          return Center(child: Text(tab.text));
+          return Center(child: Text(tab.text!));
         }).toList(),
       ),
     );

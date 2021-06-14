@@ -18,13 +18,13 @@ class SaturnLoading extends StatefulWidget {
 
 class _SaturnLoading extends State<SaturnLoading>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation _animation;
+  AnimationController? _animationController;
+  Animation? _animation;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: _animationController,
+      animation: _animationController!,
       builder: (context, child) {
         return SizedBox(
           width: 100,
@@ -46,7 +46,7 @@ class _SaturnLoading extends State<SaturnLoading>
               Padding(
                 padding: EdgeInsets.all(5),
                 child: Transform.rotate(
-                  angle: _animation.value,
+                  angle: _animation!.value,
                   origin: Offset(35, 35),
                   child: Image.asset(
                     'repo/images/saturn.png',
@@ -58,11 +58,11 @@ class _SaturnLoading extends State<SaturnLoading>
   }
 
   void stop() {
-    _animationController.stop(canceled: true);
+    _animationController!.stop(canceled: true);
   }
 
   void start() {
-    _animationController.repeat();
+    _animationController!.repeat();
   }
 
   @override
@@ -71,13 +71,13 @@ class _SaturnLoading extends State<SaturnLoading>
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 3));
     _animation =
-        Tween<double>(begin: 0, end: pi * 2).animate(_animationController);
-    _animationController.repeat();
+        Tween<double>(begin: 0, end: pi * 2).animate(_animationController!);
+    _animationController!.repeat();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _animationController!.dispose();
     super.dispose();
   }
 }

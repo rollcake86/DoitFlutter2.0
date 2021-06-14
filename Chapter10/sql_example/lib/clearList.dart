@@ -10,7 +10,7 @@ class ClearListApp extends StatefulWidget {
 }
 
 class _ClearListApp extends State<ClearListApp> {
-  Future<List<Todo>> clearList;
+  Future<List<Todo>>? clearList;
 
   @override
   void initState() {
@@ -44,16 +44,16 @@ class _ClearListApp extends State<ClearListApp> {
                   if (snapshot.hasData) {
                     return ListView.builder(
                       itemBuilder: (context, index) {
-                        Todo todo = snapshot.data[index];
+                        Todo todo = (snapshot.data as List<Todo>)[index];
                         return ListTile(
                           title: Text(
-                            todo.title,
+                            todo.title!,
                             style: TextStyle(fontSize: 20),
                           ),
                           subtitle: Container(
                             child: Column(
                               children: <Widget>[
-                                Text(todo.content),
+                                Text(todo.content!),
                                 Container(
                                   height: 1,
                                   color: Colors.blue,
@@ -63,7 +63,7 @@ class _ClearListApp extends State<ClearListApp> {
                           ),
                         );
                       },
-                      itemCount: snapshot.data.length,
+                      itemCount: (snapshot.data as List<Todo>).length,
                     );
                   }
               }

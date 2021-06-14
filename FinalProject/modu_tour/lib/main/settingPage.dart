@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class SettingPage extends StatefulWidget {
   final DatabaseReference? databaseReference;
@@ -16,7 +19,52 @@ class _SettingPage extends State<SettingPage> {
   bool pushCheck = true;
 
   static const _adUnitID = "ca-app-pub-4874780746681507/1727641684";
-  // final _nativeAdController = NativeAdmobController();
+
+  static final AdRequest request = AdRequest(
+    keywords: <String>['foo', 'bar'],
+    contentUrl: 'http://foo.com/bar.html',
+    nonPersonalizedAds: true,
+  );
+
+
+  BannerAd? _anchoredBanner;
+  bool _loadingAnchoredBanner = false;
+
+  Future<void> _createAnchoredBanner(BuildContext context) async {
+    final AnchoredAdaptiveBannerAdSize? size =
+    await AdSize.getAnchoredAdaptiveBannerAdSize(
+      Orientation.portrait,
+      MediaQuery.of(context).size.width.truncate(),
+    );
+
+    if (size == null) {
+      print('Unable to get height of anchored banner.');
+      return;
+    }
+
+    final BannerAd banner = BannerAd(
+      size: size,
+      request: request,
+      adUnitId: Platform.isAndroid
+          ? 'ca-app-pub-3940256099942544/6300978111'
+          : 'ca-app-pub-3940256099942544/2934735716',
+      listener: BannerAdListener(
+        onAdLoaded: (Ad ad) {
+          print('$BannerAd loaded.');
+          setState(() {
+            _anchoredBanner = ad as BannerAd?;
+          });
+        },
+        onAdFailedToLoad: (Ad ad, LoadAdError error) {
+          print('$BannerAd failedToLoad: $error');
+          ad.dispose();
+        },
+        onAdOpened: (Ad ad) => print('$BannerAd onAdOpened.'),
+        onAdClosed: (Ad ad) => print('$BannerAd onAdClosed.'),
+      ),
+    );
+    return banner.load();
+  }
 
   @override
   void dispose() {
@@ -32,14 +80,10 @@ class _SettingPage extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
-    // if(_bannerAd !=null && mounted) {
-    //   _bannerAd
-    //     ..load()
-    //     ..show(
-    //       anchorOffset: 60,
-    //       anchorType: AnchorType.bottom,
-    //     );
-    // }
+    if (!_loadingAnchoredBanner) {
+      _loadingAnchoredBanner = true;
+      _createAnchoredBanner(context);
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('설정하기'),
@@ -111,13 +155,13 @@ class _SettingPage extends State<SettingPage> {
                 },
                 child: Text('회원 탈퇴', style: TextStyle(fontSize: 20)),
               ),
-              // NativeAdmob(
-              //   // Your ad unit id
-              //   adUnitID: _adUnitID,
-              //   numberAds: 3,
-              //   controller: _nativeAdController,
-              //   type: NativeAdmobType.banner,
-              // ),
+              if (_anchoredBanner != null)
+                Container(
+                  color: Colors.green,
+                  width: _anchoredBanner!.size.width.toDouble(),
+                  height: _anchoredBanner!.size.height.toDouble(),
+                  child: AdWidget(ad: _anchoredBanner!),
+                ),
             ],
             mainAxisAlignment: MainAxisAlignment.center,
           ),

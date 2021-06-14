@@ -16,7 +16,7 @@ class _IntroPage extends State<IntroPage> {
   }
 
   Future<Timer> loadData() async {
-    // return Timer(Duration(seconds: 5), onDoneLoading);
+    return Timer(Duration(seconds: 5), onDoneLoading);
   }
 
   onDoneLoading() async {

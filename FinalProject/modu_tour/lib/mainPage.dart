@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,36 @@ class _MainPage extends State<MainPage> with SingleTickerProviderStateMixin {
     controller = TabController(length: 3, vsync: this);
     _database = FirebaseDatabase(databaseURL: _databaseURL);
     reference = _database?.reference().child('tour');
+  }
 
+  _initFirebaseMessaging(BuildContext context) async{
+    await Firebase.initializeApp();
+
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage? message) {
+      RemoteNotification? notification = message!.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        showDialog(context: context, builder: (context){
+          return AlertDialog(title: Text("${notification.title}"), content: Text("${notification.body}"),);
+        });
+      }
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+    });
+    print("messaging.getToken() , ${await messaging.getToken()}");
 
   }
 
@@ -48,6 +78,7 @@ class _MainPage extends State<MainPage> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     id = ModalRoute.of(context)!.settings.arguments as String?;
+    _initFirebaseMessaging(context);
     return Scaffold(
         body: TabBarView(
           children: <Widget>[

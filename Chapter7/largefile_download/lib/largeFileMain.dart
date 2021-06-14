@@ -12,9 +12,9 @@ class LargeFileMain extends StatefulWidget {
 class _LargeFileMain extends State<LargeFileMain> {
   bool downloading = false;
   var progressString = "";
-  var file;
+  String? file = "";
 
-TextEditingController _editingController;
+TextEditingController? _editingController;
 
 @override
 void initState() {
@@ -27,7 +27,7 @@ void initState() {
     Dio dio = Dio();
     try {
       var dir = await getApplicationDocumentsDirectory();
-      await dio.download(_editingController.value.text, '${dir.path}/myimage.jpg',
+      await dio.download(_editingController!.value.text, '${dir.path}/myimage.jpg',
           onReceiveProgress: (rec, total) {
         print('Rec: $rec , Total: $total');
         file = '${dir.path}/myimage.jpg';
@@ -96,12 +96,12 @@ void initState() {
                       case ConnectionState.done:
                         print('done');
                         if (snapshot.hasData) {
-                          return snapshot.data;
+                          return snapshot.data as Widget;
                         }
                     }
                     return Text('데이터 없음');
                   },
-                  future: downloadWidget(file),
+                  future: downloadWidget(file!),
                 )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

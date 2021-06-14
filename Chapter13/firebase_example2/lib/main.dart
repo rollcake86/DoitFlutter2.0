@@ -11,7 +11,6 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
 
-
   runApp(MyApp());
 }
 
