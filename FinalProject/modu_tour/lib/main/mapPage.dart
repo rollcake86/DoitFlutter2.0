@@ -23,7 +23,7 @@ class _MapPage extends State<MapPage> {
   List<DropdownMenuItem<Item>> sublist = List.empty(growable: true);
   List<TourData> tourData = List.empty(growable: true);
   ScrollController? _scrollController;
-  String authKey = '### 오픈 API 키(일반 인증키) ###';
+  String authKey = 'NyZeSq4N2Vr5k%2FOjpie7RzHh3M%2FzELiqGJHwm8tHgVIVH1PCnw1mYv6rkn9AaIb8zScYJOlt%2Fvo2FTXYE6En9A%3D%3D';
   Item? area;
   Item? kind;
   int page = 1;
@@ -67,7 +67,6 @@ class _MapPage extends State<MapPage> {
                       });
                     },
                     items: list,
-                    // items: list,
                   ),
                   SizedBox(
                     width: 10,
@@ -122,7 +121,8 @@ class _MapPage extends State<MapPage> {
                                           color: Colors.black, width: 1),
                                       image: DecorationImage(
                                           fit: BoxFit.fill,
-                                          image: getImage(tourData[index].imagePath!))))),
+                                          image: getImage(
+                                              tourData[index].imagePath))))),
                           SizedBox(
                             width: 20,
                           ),
@@ -178,24 +178,29 @@ class _MapPage extends State<MapPage> {
         .insert('place', info.toMap(),
             conflictAlgorithm: ConflictAlgorithm.replace)
         .then((value) {
-          Scaffold.of(context).showSnackBar(SnackBar(content: Text('즐겨찾기에 추가되었습니다')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('즐겨찾기에 추가되었습니다')));
     });
   }
 
-  ImageProvider getImage(String imagePath){
-    if(imagePath != 'null') {
+  ImageProvider getImage(String? imagePath) {
+    if (imagePath != null) {
       return NetworkImage(imagePath);
-    }else{
+    } else {
       return AssetImage('repo/images/map_location.png');
     }
   }
 
-  void getAreaList({required int area, required int contentTypeId, required int page}) async {
+  void getAreaList(
+      {required int area,
+      required int contentTypeId,
+      required int page}) async {
     var url =
-        'http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey =$authKey & MobileOS = AND & MobileApp = ModuTour &_type = json & areaCode = 1 & sigunguCode = $area & pageNo = $page';
+        'http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=$authKey&MobileOS=AND&MobileApp=ModuTour&_type=json&areaCode=1&numOfRows=10&sigunguCode=$area&pageNo=$page';
     if (contentTypeId != 0) {
       url = url + '&contentTypeId=$contentTypeId';
     }
+    print(url);
     var response = await http.get(Uri.parse(url));
     String body = utf8.decode(response.bodyBytes);
     print(body);

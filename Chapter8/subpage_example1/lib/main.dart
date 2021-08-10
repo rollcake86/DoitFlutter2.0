@@ -64,7 +64,7 @@ class SecondPage extends StatelessWidget {
       ),
       body: Container(
         child: Center(
-          child: MaterialButton(
+          child: ElevatedButton(
             onPressed: () {
               Navigator.of(context).pop();
             },

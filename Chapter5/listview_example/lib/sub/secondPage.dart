@@ -94,7 +94,7 @@ class _SecondApp extends State<SecondApp> {
                   ],
                 ),
               ),
-              MaterialButton(
+              ElevatedButton(
                   child: Text('동물 추가하기'),
                   onPressed: () {
                     var animal = Animal(
@@ -110,11 +110,11 @@ class _SecondApp extends State<SecondApp> {
                         style: TextStyle(fontSize: 30.0),
                       ),
                       actions: [
-                        MaterialButton(onPressed: (){
+                        ElevatedButton(onPressed: (){
                           widget.list.add(animal);
                           Navigator.of(context).pop();
                         } , child: Text('예'),),
-                        MaterialButton(onPressed: (){
+                        ElevatedButton(onPressed: (){
                           Navigator.of(context).pop();
                         } , child: Text('아니요'),),
                       ],

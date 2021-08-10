@@ -15,8 +15,6 @@ class MyApp extends StatelessWidget {
 }
 
 class WidgetApp extends StatefulWidget {
-  WidgetApp({Key? key}) : super(key: key);
-
   @override
   _WidgetExampleState createState() => _WidgetExampleState();
 }
@@ -70,11 +68,11 @@ class _WidgetExampleState extends State<WidgetApp> {
               ),
               Padding(
                 padding: EdgeInsets.all(15),
-                child: MaterialButton(
+                child: ElevatedButton(
                     child: Row(
                       children: <Widget>[Icon(Icons.add), Text(buttonText!)],
                     ),
-                    color: Colors.amber,
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all( Colors.amber)),
                     onPressed: () {
                       setState(() {
                         var value1Int = double.parse(value1.value.text);

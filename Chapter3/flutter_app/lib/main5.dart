@@ -24,9 +24,9 @@ class _MyApp extends State<MyApp> {
         darkTheme: ThemeData.light(),
         home: Scaffold(
           body: Center(
-            child: MaterialButton(
+            child: ElevatedButton(
                 child: Text('$test'),
-                color: _color,
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(_color)),
                 onPressed: () {
                   if (_color == Colors.blue) {
                     setState(() {

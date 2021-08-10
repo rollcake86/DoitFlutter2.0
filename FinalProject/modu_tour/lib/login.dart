@@ -110,12 +110,12 @@ class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
                     ),
                     Row(
                       children: <Widget>[
-                        FlatButton(
+                        MaterialButton(
                             onPressed: () {
                               Navigator.of(context).pushNamed('/sign');
                             },
                             child: Text('회원가입')),
-                        FlatButton(
+                        MaterialButton(
                             onPressed: () {
                               if (_idTextController?.value.text.length == 0 ||
                                   _pwTextController?.value.text.length == 0) {

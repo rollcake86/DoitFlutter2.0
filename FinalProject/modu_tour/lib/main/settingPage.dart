@@ -18,17 +18,8 @@ class SettingPage extends StatefulWidget {
 class _SettingPage extends State<SettingPage> {
   bool pushCheck = true;
 
-  static const _adUnitID = "ca-app-pub-4874780746681507/1727641684";
-
-  static final AdRequest request = AdRequest(
-    keywords: <String>['foo', 'bar'],
-    contentUrl: 'http://foo.com/bar.html',
-    nonPersonalizedAds: true,
-  );
-
-
-  BannerAd? _anchoredBanner;
-  bool _loadingAnchoredBanner = false;
+  BannerAd? _banner;
+  bool _loadingBanner = false;
 
   Future<void> _createAnchoredBanner(BuildContext context) async {
     final AnchoredAdaptiveBannerAdSize? size =
@@ -36,23 +27,19 @@ class _SettingPage extends State<SettingPage> {
       Orientation.portrait,
       MediaQuery.of(context).size.width.truncate(),
     );
-
     if (size == null) {
       print('Unable to get height of anchored banner.');
       return;
     }
-
     final BannerAd banner = BannerAd(
       size: size,
-      request: request,
-      adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/6300978111'
-          : 'ca-app-pub-3940256099942544/2934735716',
+      request: AdRequest(),
+      adUnitId: BannerAd.testAdUnitId,
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
           print('$BannerAd loaded.');
           setState(() {
-            _anchoredBanner = ad as BannerAd?;
+            _banner = ad as BannerAd?;
           });
         },
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
@@ -69,7 +56,7 @@ class _SettingPage extends State<SettingPage> {
   @override
   void dispose() {
     super.dispose();
-    // _nativeAdController.dispose();
+    _banner!.dispose();
   }
 
   @override
@@ -80,8 +67,8 @@ class _SettingPage extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_loadingAnchoredBanner) {
-      _loadingAnchoredBanner = true;
+    if (!_loadingBanner) {
+      _loadingBanner = true;
       _createAnchoredBanner(context);
     }
     return Scaffold(
@@ -155,12 +142,12 @@ class _SettingPage extends State<SettingPage> {
                 },
                 child: Text('회원 탈퇴', style: TextStyle(fontSize: 20)),
               ),
-              if (_anchoredBanner != null)
+              if (_banner != null)
                 Container(
                   color: Colors.green,
-                  width: _anchoredBanner!.size.width.toDouble(),
-                  height: _anchoredBanner!.size.height.toDouble(),
-                  child: AdWidget(ad: _anchoredBanner!),
+                  width: _banner!.size.width.toDouble(),
+                  height: _banner!.size.height.toDouble(),
+                  child: AdWidget(ad: _banner!),
                 ),
             ],
             mainAxisAlignment: MainAxisAlignment.center,

@@ -18,7 +18,7 @@ class SecondDetail extends StatelessWidget {
                 controller: controller,
                 keyboardType: TextInputType.text,
               ),
-              MaterialButton(
+              ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop(controller.value.text);
                 },

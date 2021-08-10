@@ -101,7 +101,7 @@ class _TourDetailPage extends State<TourDetailPage> {
                                     Border.all(color: Colors.black, width: 1),
                                     image: DecorationImage(
                                         fit: BoxFit.fill,
-                                        image: getImage(widget.tourData!.imagePath!)
+                                        image: getImage(widget.tourData!.imagePath)
                                       ,)))),
                         Padding(
                           padding: EdgeInsets.only(top: 20, bottom: 20),
@@ -166,7 +166,7 @@ class _TourDetailPage extends State<TourDetailPage> {
               }, childCount: reviews.length)),
           SliverList(
               delegate: SliverChildListDelegate([
-                RaisedButton(
+                MaterialButton(
                   onPressed: () {
                     showDialog(
                         context: context,
@@ -177,7 +177,7 @@ class _TourDetailPage extends State<TourDetailPage> {
                               controller: _reviewTextController,
                             ),
                             actions: <Widget>[
-                              FlatButton(
+                              MaterialButton(
                                   onPressed: () {
                                     Review review = Review(
                                         widget.id!,
@@ -190,7 +190,7 @@ class _TourDetailPage extends State<TourDetailPage> {
                                         .set(review.toJson());
                                   },
                                   child: Text('후기 쓰기')),
-                              FlatButton(
+                              MaterialButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
@@ -226,8 +226,8 @@ class _TourDetailPage extends State<TourDetailPage> {
     });
   }
 
-  ImageProvider getImage(String imagePath){
-    if(imagePath != 'null') {
+  ImageProvider getImage(String? imagePath){
+    if(imagePath != null) {
       return NetworkImage(imagePath);
     }else{
       return AssetImage('repo/images/map_location.png');
@@ -266,7 +266,7 @@ class _TourDetailPage extends State<TourDetailPage> {
                     });
                   }),
             ),
-            RaisedButton(
+            MaterialButton(
               onPressed: () {
                 DisableInfo info = DisableInfo(widget.id ,disableCheck1.floor(),
                     disableCheck2.floor(), DateTime.now().toIso8601String());
@@ -328,7 +328,7 @@ class _TourDetailPage extends State<TourDetailPage> {
           SizedBox(
             height: 20,
           ),
-          RaisedButton(onPressed: (){
+          MaterialButton(onPressed: (){
             setState(() {
               _disableWidget = false;
             });

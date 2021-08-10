@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       onCreate: (db, version) {
         return db.execute(
           "CREATE TABLE todos(id INTEGER PRIMARY KEY AUTOINCREMENT, "
-          "title TEXT, content TEXT, active BOOL)",
+          "title TEXT, content TEXT, active INTEGER)",
         );
       },
       version: 1,
@@ -102,7 +102,7 @@ class _DatabaseApp extends State<DatabaseApp> {
                               child: Column(
                                 children: <Widget>[
                                   Text(todo.content!),
-                                  Text('체크 : ${todo.active.toString()}'),
+                                  Text('체크 : ${todo.active == 1 ? 'true' : 'false'}'),
                                   Container(
                                     height: 1,
                                     color: Colors.blue,
@@ -121,24 +121,22 @@ class _DatabaseApp extends State<DatabaseApp> {
                                         MaterialButton(
                                             onPressed: () {
                                               setState(() {
-                                                todo.active == true
-                                                    ? todo.active = false
-                                                    : todo.active = true;
+                                                todo.active == 1
+                                                    ? todo.active = 0
+                                                    : todo.active = 1;
                                               });
                                               Navigator.of(context).pop(todo);
                                             },
                                             child: Text('예')),
                                         MaterialButton(
                                             onPressed: () {
-                                              Navigator.of(context).pop();
+                                              Navigator.of(context).pop(todo);
                                             },
                                             child: Text('아니요')),
                                       ],
                                     );
                                   });
-                              if (result != null) {
                                 _updateTodo(result);
-                              }
                             },
                             onLongPress: () async {
                               Todo result = await showDialog(
@@ -182,8 +180,10 @@ class _DatabaseApp extends State<DatabaseApp> {
           children: <Widget>[
             FloatingActionButton(
               onPressed: () async {
-                final todo = await Navigator.of(context).pushNamed('/add') as Todo;
-                _insertTodo(todo);
+                final todo = await Navigator.of(context).pushNamed('/add');
+                if(todo != null){
+                  _insertTodo(todo as Todo);
+                }
               },
               heroTag: null,
               child: Icon(Icons.add),
@@ -246,7 +246,7 @@ class _DatabaseApp extends State<DatabaseApp> {
     final List<Map<String, dynamic>> maps = await database.query('todos');
 
     return List.generate(maps.length, (i) {
-      bool active = maps[i]['active'] == 1 ? true : false;
+      int active = maps[i]['active'] == 1 ? 1 : 0;
       return Todo(
           title: maps[i]['title'].toString(),
           content: maps[i]['content'].toString(),

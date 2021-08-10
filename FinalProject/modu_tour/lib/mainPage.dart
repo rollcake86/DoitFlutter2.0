@@ -1,16 +1,13 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'main/favoritePage.dart';
 import 'main/settingPage.dart';
 import 'main/mapPage.dart';
 
 class MainPage extends StatefulWidget {
-  // final Future<Database> database;
-  // MainPage(this.database);
+   final Future<Database> database;
+   MainPage(this.database);
   @override
   State<StatefulWidget> createState() => _MainPage();
 }
@@ -29,68 +26,30 @@ class _MainPage extends State<MainPage> with SingleTickerProviderStateMixin {
     super.initState();
     controller = TabController(length: 3, vsync: this);
     _database = FirebaseDatabase(databaseURL: _databaseURL);
-    reference = _database?.reference().child('tour');
-  }
-
-  _initFirebaseMessaging(BuildContext context) async{
-    await Firebase.initializeApp();
-
-    FirebaseMessaging messaging = FirebaseMessaging.instance;
-    NotificationSettings settings = await messaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
-
-    FirebaseMessaging.onMessage.listen((RemoteMessage? message) {
-      RemoteNotification? notification = message!.notification;
-      AndroidNotification? android = message.notification?.android;
-      if (notification != null && android != null) {
-        showDialog(context: context, builder: (context){
-          return AlertDialog(title: Text("${notification.title}"), content: Text("${notification.body}"),);
-        });
-      }
-    });
-
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('A new onMessageOpenedApp event was published!');
-    });
-    print("messaging.getToken() , ${await messaging.getToken()}");
-
+    reference = _database!.reference().child('tour');
   }
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller!.dispose();
     super.dispose();
-  }
-
-  void _loadData() async {
-    var key = "push";
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    pushCheck = pref.getBool(key)!;
   }
 
   @override
   Widget build(BuildContext context) {
     id = ModalRoute.of(context)!.settings.arguments as String?;
-    _initFirebaseMessaging(context);
     return Scaffold(
         body: TabBarView(
           children: <Widget>[
             // TabBarView에 채울 위젯들
             MapPage(
               databaseReference: reference!,
-              // db: widget.database,
+              db: widget.database,
               id: id!,
             ),
             FavoritePage(
               databaseReference: reference!,
-              // db: widget.database,
+              db: widget.database,
               id: id!,
             ),
             SettingPage()

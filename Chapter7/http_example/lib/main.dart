@@ -67,16 +67,19 @@ class _HttpApp extends State<HttpApp> {
                 )
               : ListView.builder(
                   itemBuilder: (context, index) {
+                    print(data![index]['thumbnail']);
                     return Card(
                       child: Container(
                         child: Row(
                           children: <Widget>[
+                            if(data?[index]['thumbnail'] != '')
                             Image.network(
                               data![index]['thumbnail'],
                               height: 100,
                               width: 100,
                               fit: BoxFit.contain,
-                            ),
+                            ) else Container(  height: 100,
+                              width: 100,),
                             Column(
                               children: <Widget>[
                                 Container(

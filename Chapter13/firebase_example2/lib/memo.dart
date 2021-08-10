@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class Memo {
+  String? key;
   String title;
   String content;
   String createTime;
@@ -8,7 +9,8 @@ class Memo {
   Memo(this.title, this.content, this.createTime);
 
   Memo.fromSnapshot(DataSnapshot snapshot)
-      : title = snapshot.value['title'],
+      : key = snapshot.key,
+        title = snapshot.value['title'],
         content = snapshot.value['content'],
         createTime = snapshot.value['createTime'];
 

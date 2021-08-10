@@ -52,7 +52,7 @@ class _AddTodoApp extends State<AddTodoApp> {
                   Todo todo = Todo(
                       title: titleController!.value.text,
                       content: contentController!.value.text,
-                      active: false);
+                      active: 0);
                   Navigator.of(context).pop(todo);
                 },
                 child: Text('저장하기'),

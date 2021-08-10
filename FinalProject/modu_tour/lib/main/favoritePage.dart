@@ -63,7 +63,7 @@ class _FavoritePage extends State<FavoritePage> {
                                                 color: Colors.black, width: 1),
                                             image: DecorationImage(
                                                 fit: BoxFit.fill,
-                                                image: getImage(info.imagePath!))))),
+                                                image: getImage(info.imagePath))))),
                                 SizedBox(
                                   width: 20,
                                 ),
@@ -121,8 +121,8 @@ class _FavoritePage extends State<FavoritePage> {
     );
   }
 
-  ImageProvider getImage(String imagePath){
-    if(imagePath != 'null') {
+  ImageProvider getImage(String? imagePath){
+    if(imagePath != null) {
       return NetworkImage(imagePath);
     }else{
       return AssetImage('repo/images/map_location.png');
@@ -135,7 +135,7 @@ class _FavoritePage extends State<FavoritePage> {
       setState(() {
         _tourList = getTodos();
       });
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text('즐겨찾기를 해제합니다')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('즐겨찾기를 해제합니다')));
     });
   }
 

@@ -71,7 +71,7 @@ class _SignPage extends State<SignPage> {
                       border: OutlineInputBorder()),),),
               SizedBox(
                 height: 20,),
-              FlatButton(
+              MaterialButton(
                 onPressed: () {
                   if (_idTextController!.value.text.length >= 4 &&
                       _pwTextController!.value.text.length >= 6) {

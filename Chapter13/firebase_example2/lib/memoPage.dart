@@ -76,8 +76,8 @@ class _MemoApp extends State<MemoApp> {
   void initState() {
     super.initState();
     _database = FirebaseDatabase(databaseURL: _databaseURL);
-    reference = _database?.reference().child('memo');
-    reference?.onChildAdded.listen((event) {
+    reference = _database!.reference().child('memo');
+    reference!.onChildAdded.listen((event) {
       print(event.snapshot.value.toString());
       setState(() {
         memos.add(Memo.fromSnapshot(event.snapshot));
@@ -194,7 +194,7 @@ class _MemoApp extends State<MemoApp> {
                                         FlatButton(
                                             onPressed: () {
                                               reference!
-                                                  .child(memos[index].createTime)
+                                                  .child(memos[index].key!)
                                                   .remove()
                                                   .then((_) {
                                                 setState(() {
