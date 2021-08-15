@@ -82,12 +82,12 @@ class _ClearListApp extends State<ClearListApp> {
                   title: Text('완료한 일 삭제'),
                   content: Text('완료한 일을 모두 삭제할까요?'),
                   actions: <Widget>[
-                    MaterialButton(
+                    TextButton(
                         onPressed: () {
                           Navigator.of(context).pop(true);
                         },
                         child: Text('예')),
-                    MaterialButton(
+                    TextButton(
                         onPressed: () {
                           Navigator.of(context).pop(false);
                         },

@@ -64,7 +64,7 @@ class _NativeApp extends State<NativeApp> {
                 _deviceInfo,
                 style: TextStyle(fontSize: 30),
               ),
-              FlatButton(
+              TextButton(
                   onPressed: () {
                     _showDialog();
                   },

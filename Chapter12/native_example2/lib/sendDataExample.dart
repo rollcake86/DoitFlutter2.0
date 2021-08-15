@@ -37,7 +37,7 @@ class _SendDataExample extends State<SendDataExample> {
               SizedBox(
                 height: 20,
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   _decodeText(_changeText);
                 },

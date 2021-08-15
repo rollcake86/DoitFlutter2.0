@@ -65,7 +65,7 @@ class _DatabaseApp extends State<DatabaseApp> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Database Example'), actions: <Widget>[
-          MaterialButton(
+          ElevatedButton(
               onPressed: () async {
                 await Navigator.of(context).pushNamed('/clear');
                 setState(() {
@@ -118,7 +118,7 @@ class _DatabaseApp extends State<DatabaseApp> {
                                       title: Text('${todo.id} : ${todo.title}'),
                                       content: Text('Todo를 체크하시겠습니까?'),
                                       actions: <Widget>[
-                                        MaterialButton(
+                                        TextButton(
                                             onPressed: () {
                                               setState(() {
                                                 todo.active == 1
@@ -128,7 +128,7 @@ class _DatabaseApp extends State<DatabaseApp> {
                                               Navigator.of(context).pop(todo);
                                             },
                                             child: Text('예')),
-                                        MaterialButton(
+                                        TextButton(
                                             onPressed: () {
                                               Navigator.of(context).pop(todo);
                                             },
@@ -147,12 +147,12 @@ class _DatabaseApp extends State<DatabaseApp> {
                                       content:
                                           Text('${todo.content}를 삭제하시겠습니까?'),
                                       actions: <Widget>[
-                                        MaterialButton(
+                                        TextButton(
                                             onPressed: () {
                                               Navigator.of(context).pop(todo);
                                             },
                                             child: Text('예')),
-                                        MaterialButton(
+                                        TextButton(
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },

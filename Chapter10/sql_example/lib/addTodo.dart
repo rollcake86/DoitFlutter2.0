@@ -47,7 +47,7 @@ class _AddTodoApp extends State<AddTodoApp> {
                   decoration: InputDecoration(labelText: '할일'),
                 ),
               ),
-              MaterialButton(
+              ElevatedButton(
                 onPressed: (){
                   Todo todo = Todo(
                       title: titleController!.value.text,

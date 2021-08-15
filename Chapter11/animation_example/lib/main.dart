@@ -101,7 +101,7 @@ class _AnimationApp extends State<AnimationApp> {
                 ),
                 height: 200,
               ),),
-              MaterialButton(
+              ElevatedButton(
                 onPressed: () {
                   setState(() {
                     if (current < peoples.length - 1) {
@@ -112,7 +112,7 @@ class _AnimationApp extends State<AnimationApp> {
                 },
                 child: Text('다음'),
               ),
-              MaterialButton(
+              ElevatedButton(
                 onPressed: () {
                   setState(() {
                     if (current > 0) {
@@ -123,7 +123,7 @@ class _AnimationApp extends State<AnimationApp> {
                 },
                 child: Text('이전'),
               ),
-              MaterialButton(
+              ElevatedButton(
                 onPressed: () {
                   setState(() {
                     _opacity == 1 ? _opacity = 0 : _opacity = 1;
@@ -131,7 +131,7 @@ class _AnimationApp extends State<AnimationApp> {
                 },
                 child: Text('사라지기'),
               ),
-              MaterialButton(
+              ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder:
                       (context) => SecondPage()));

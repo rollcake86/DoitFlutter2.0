@@ -11,12 +11,12 @@ import 'memo.dart';
 import 'memoAdd.dart';
 import 'memoDetail.dart';
 
-class MemoApp extends StatefulWidget {
+class MemoPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _MemoApp();
+  State<StatefulWidget> createState() => _MemoPage();
 }
 
-class _MemoApp extends State<MemoApp> {
+class _MemoPage extends State<MemoPage> {
 
   static final AdRequest request = AdRequest(
     keywords: <String>['foo', 'bar'],
@@ -32,32 +32,27 @@ class _MemoApp extends State<MemoApp> {
   List<Memo> memos = List.empty(growable: true);
   // final FirebaseMessaging _firebaseMessaging = FirebaseMexssaging();
 
-  BannerAd? _anchoredBanner;
-  bool _loadingAnchoredBanner = false;
+  BannerAd? _banner;
+  bool _loadingBanner = false;
 
-  Future<void> _createAnchoredBanner(BuildContext context) async {
+  Future<void> _createBanner(BuildContext context) async {
     final AnchoredAdaptiveBannerAdSize? size =
     await AdSize.getAnchoredAdaptiveBannerAdSize(
       Orientation.portrait,
       MediaQuery.of(context).size.width.truncate(),
     );
-
     if (size == null) {
-      print('Unable to get height of anchored banner.');
       return;
     }
-
     final BannerAd banner = BannerAd(
       size: size,
-      request: request,
-      adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/6300978111'
-          : 'ca-app-pub-3940256099942544/2934735716',
+      request: AdRequest(),
+      adUnitId: BannerAd.testAdUnitId, // '### 하단 배너 광고 ID ###',
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
           print('$BannerAd loaded.');
           setState(() {
-            _anchoredBanner = ad as BannerAd?;
+            _banner = ad as BannerAd?;
           });
         },
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
@@ -143,9 +138,9 @@ class _MemoApp extends State<MemoApp> {
   Widget build(BuildContext context) {
     _initFirebaseMessaging(context);
 
-    if (!_loadingAnchoredBanner) {
-      _loadingAnchoredBanner = true;
-      _createAnchoredBanner(context);
+    if (!_loadingBanner) {
+      _loadingBanner = true;
+      _createBanner(context);
     }
     return Scaffold(
       appBar: AppBar(
@@ -226,12 +221,12 @@ class _MemoApp extends State<MemoApp> {
               ),
             ),
           ),
-          if (_anchoredBanner != null)
+          if (_banner != null)
             Container(
               color: Colors.green,
-              width: _anchoredBanner!.size.width.toDouble(),
-              height: _anchoredBanner!.size.height.toDouble(),
-              child: AdWidget(ad: _anchoredBanner!),
+              width: _banner!.size.width.toDouble(),
+              height: _banner!.size.height.toDouble(),
+              child: AdWidget(ad: _banner!),
             ),
         ],
       ),
@@ -251,7 +246,7 @@ class _MemoApp extends State<MemoApp> {
   @override
   void dispose() {
     super.dispose();
-    _anchoredBanner?.dispose();
+    _banner?.dispose();
   }
 }
 

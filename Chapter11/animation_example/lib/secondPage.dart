@@ -62,7 +62,7 @@ class _SecondPage extends State<SecondPage>
                       size: 300,
                     )),
               ),
-              MaterialButton(
+              ElevatedButton(
                 onPressed: () {
                   _animationController!.forward();
                 },
