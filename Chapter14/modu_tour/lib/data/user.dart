@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class User {
-  String key;
+  String? key;
   String id;
   String pw;
   String createTime;

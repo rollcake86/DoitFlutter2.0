@@ -4,11 +4,11 @@ import 'sub/firstPage.dart';
 import 'sub/secondPage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -50,16 +50,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
 
-  TabController controller;
+  TabController? controller;
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 2, vsync: this);
-    controller.addListener(() {
-      if(!controller.indexIsChanging){
-        print("이전 index, ${controller.previousIndex}");
-        print("현재 index, ${controller.index}");
-        print("전체 탭 길이, ${controller.length}");        
+    controller!.addListener(() {
+      if(!controller!.indexIsChanging){
+        print("이전 index, ${controller!.previousIndex}");
+        print("현재 index, ${controller!.index}");
+        print("전체 탭 길이, ${controller!.length}");
       }
     });
   }
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
   @override
   void dispose() {
-    controller.dispose();
+    controller!.dispose();
     super.dispose();
   }
 }

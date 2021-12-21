@@ -13,12 +13,13 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   static FirebaseAnalytics analytics = FirebaseAnalytics();
   static FirebaseAnalyticsObserver observer =
       FirebaseAnalyticsObserver(analytics: analytics);

@@ -5,9 +5,11 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:nativeexample/sendDataExample.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     if (Platform.isIOS) {

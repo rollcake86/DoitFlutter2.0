@@ -51,6 +51,16 @@
       <excludeFolder url="file://$MODULE_DIR$/Chapter6/listview_example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter4/widget_example/build" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter4/widget_example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter8/subpage_example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter8/subpage_example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter9/fileio_example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter9/fileio_example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter8/todo_list/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter8/todo_list/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter9/internal_example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter9/internal_example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter9/intro_example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter9/intro_example/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

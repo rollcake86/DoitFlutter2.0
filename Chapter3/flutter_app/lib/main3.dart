@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  var switchValue = false;
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+
+    var switchValue = false;
+
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import '../animalItem.dart';
 import '../cupertinoMain.dart';
 
@@ -11,6 +12,7 @@ class CupertinoFirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      backgroundColor: Colors.white,
         navigationBar: CupertinoNavigationBar(
           middle: Text('동물 리스트'),
         ),
@@ -30,7 +32,7 @@ class CupertinoFirstPage extends StatelessWidget {
                           width: 80,
                           height: 80,
                         ),
-                        Text(animalList[index].animalName)
+                        Text(animalList[index].animalName , style: TextStyle(color: Colors.black),)
                       ],
                     ),
                     Container(

@@ -11,13 +11,13 @@ class SignPage extends StatefulWidget {
 }
 
 class _SignPage extends State<SignPage> {
-  FirebaseDatabase _database;
-  DatabaseReference reference;
+  FirebaseDatabase? _database;
+  DatabaseReference? reference;
   String _databaseURL = 'https://modutour-9a606.firebaseio.com/';
 
-  TextEditingController _idTextController;
-  TextEditingController _pwTextController;
-  TextEditingController _pwCheckTextController;
+  TextEditingController? _idTextController;
+  TextEditingController? _pwTextController;
+  TextEditingController? _pwCheckTextController;
 
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _SignPage extends State<SignPage> {
     _pwCheckTextController = TextEditingController();
 
     _database = FirebaseDatabase(databaseURL: _databaseURL);
-    reference = _database.reference().child('user');
+    reference = _database!.reference().child('user');
   }
 
   @override
@@ -82,16 +82,16 @@ class _SignPage extends State<SignPage> {
               ),
               FlatButton(
                 onPressed: () {
-                  if(_idTextController.value.text.length >= 4 && _pwTextController.value.text.length >= 6){
-                    if (_pwTextController.value.text ==
-                        _pwCheckTextController.value.text) {
-                      var bytes = utf8.encode(_pwTextController.value.text);
+                  if(_idTextController!.value.text.length >= 4 && _pwTextController!.value.text.length >= 6){
+                    if (_pwTextController!.value.text ==
+                        _pwCheckTextController!.value.text) {
+                      var bytes = utf8.encode(_pwTextController!.value.text);
                       var digest = sha1.convert(bytes);
-                      reference
-                          .child(_idTextController.value.text)
+                      reference!
+                          .child(_idTextController!.value.text)
                           .push()
                           .set(User(
-                          _idTextController.value.text,
+                          _idTextController!.value.text,
                           digest.toString(),
                           DateTime.now().toIso8601String())
                           .toJson())

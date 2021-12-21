@@ -6,10 +6,12 @@ import 'clearList.dart';
 import 'todo.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     Future<Database> database = initDatabase();

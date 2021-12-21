@@ -13,15 +13,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
-  FirebaseDatabase _database;
-  DatabaseReference reference;
+  FirebaseDatabase? _database;
+  DatabaseReference? reference;
   String _databaseURL = 'https://modutour-9a606.firebaseio.com/';
 
   double opacity = 0;
-  AnimationController _animationController;
-  Animation _animation;
-  TextEditingController _idTextController;
-  TextEditingController _pwTextController;
+  AnimationController? _animationController;
+  Animation? _animation;
+  TextEditingController? _idTextController;
+  TextEditingController? _pwTextController;
 
   @override
   void initState() {
@@ -33,8 +33,8 @@ class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
     _animationController =
         AnimationController(duration: Duration(seconds: 3), vsync: this);
     _animation =
-        Tween<double>(begin: 0, end: pi * 2).animate(_animationController);
-    _animationController.repeat();
+        Tween<double>(begin: 0, end: pi * 2).animate(_animationController!);
+    _animationController!.repeat();
     Timer(Duration(seconds: 2), () {
       setState(() {
         opacity = 1;
@@ -42,12 +42,12 @@ class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
     });
 
     _database = FirebaseDatabase(databaseURL: _databaseURL);
-    reference = _database.reference().child('user');
+    reference = _database!.reference().child('user');
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _animationController!.dispose();
     super.dispose();
   }
 
@@ -59,10 +59,10 @@ class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
           child: Column(
             children: <Widget>[
               AnimatedBuilder(
-                animation: _animationController,
+                animation: _animationController!,
                 builder: (context, widget) {
                   return Transform.rotate(
-                    angle: _animation.value,
+                    angle: _animation!.value,
                     child: widget,
                   );
                 },
@@ -117,30 +117,30 @@ class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
                             child: Text('회원가입')),
                         FlatButton(
                             onPressed: () {
-                              if (_idTextController.value.text.length == 0 ||
-                                  _pwTextController.value.text.length == 0) {
+                              if (_idTextController!.value.text.length == 0 ||
+                                  _pwTextController!.value.text.length == 0) {
                                 makeDialog('빈칸이 있습니다');
                               } else {
-                                reference
-                                    .child(_idTextController.value.text)
+                                reference!
+                                    .child(_idTextController!.value.text)
                                     .onValue
                                     .listen((event) {
                                   if (event.snapshot.value == null) {
                                     makeDialog('아이디가 없습니다');
                                   } else {
-                                    reference
-                                        .child(_idTextController.value.text)
+                                    reference!
+                                        .child(_idTextController!.value.text)
                                         .onChildAdded
                                         .listen((event) {
                                       User user =
                                           User.fromSnapshot(event.snapshot);
                                       var bytes = utf8
-                                          .encode(_pwTextController.value.text);
+                                          .encode(_pwTextController!.value.text);
                                       var digest = sha1.convert(bytes);
                                       if (user.pw == digest.toString()) {
                                         Navigator.of(context)
                                             .pushReplacementNamed('/main',
-                                                arguments: _idTextController
+                                                arguments: _idTextController!
                                                     .value.text);
                                       } else {
                                         makeDialog('비밀번호가 틀립니다');
