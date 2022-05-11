@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:modu_tour/signPage.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -9,9 +8,12 @@ import 'login.dart';
 import 'mainPage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-void main() {
+import 'signPage.dart';
+
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<Database> database =
-        initDatabase(); // build 할때 initDatabase() 함수를 호출합니다
+    initDatabase(); // build 할때 initDatabase() 함수를 호출합니다
     return MaterialApp(
       title: '모두의 여행',
       theme: ThemeData(
@@ -40,30 +42,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) {
-          return FutureBuilder(
-            // Initialize FlutterFire
-            future: Firebase.initializeApp(),
-            builder: (context, snapshot) {
-              // Check for errors
-              if (snapshot.hasError) {
-                return Center(
-                  child: Text('Error'),
-                );
-              }
-
-              // Once complete, show your application
-              if (snapshot.connectionState == ConnectionState.done) {
-                _getToken();
-                _initFirebaseMessaging(context);
-                return LoginPage();
-              }
-
-              // Otherwise, show something whilst waiting for initialization to complete
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          );
+          _getToken();
+          _initFirebaseMessaging(context);
+          return LoginPage();
         },
         '/sign': (context) => SignPage(),
         '/main': (context) => MainPage(database),
@@ -73,7 +54,6 @@ class MyApp extends StatelessWidget {
 
   _initFirebaseMessaging(BuildContext context)  {
     FirebaseMessaging.onMessage.listen((RemoteMessage event) async {
-
       print(event.data);
       print(event.notification!.title);
       bool? pushCheck = await _loadData();

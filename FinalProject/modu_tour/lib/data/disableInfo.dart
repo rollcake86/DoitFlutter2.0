@@ -11,10 +11,10 @@ class DisableInfo {
 
   DisableInfo.fromSnapshot(DataSnapshot snapshot)
       : key = snapshot.key,
-        id = snapshot.value['id'],
-        disable1 = snapshot.value['disable1'],
-        disable2 = snapshot.value['disable2'],
-        createTime = snapshot.value['createTime'];
+        id = (snapshot.value as Map)['id'],
+        disable1 = (snapshot.value as Map)['disable1'],
+        disable2 = (snapshot.value as Map)['disable2'],
+        createTime = (snapshot.value as Map)['createTime'];
 
   toJson() {
     return {

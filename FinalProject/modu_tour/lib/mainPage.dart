@@ -16,7 +16,6 @@ class _MainPage extends State<MainPage> with SingleTickerProviderStateMixin {
   TabController? controller;
   FirebaseDatabase? _database;
   DatabaseReference? reference;
-  String _databaseURL = 'https://exampleapplication-2e5a4.firebaseio.com/';
   String? id;
 
   bool pushCheck = true;
@@ -25,8 +24,8 @@ class _MainPage extends State<MainPage> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     controller = TabController(length: 3, vsync: this);
-    _database = FirebaseDatabase(databaseURL: _databaseURL);
-    reference = _database!.reference().child('tour');
+    _database = FirebaseDatabase.instance;
+    reference = _database!.ref().child('tour');
   }
 
   @override

@@ -5,7 +5,7 @@ import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:modu_tour/data/user.dart';
+import 'package:modutour/data/user.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,41 +13,41 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
-  FirebaseDatabase? _database;
-  DatabaseReference? reference;
-  String _databaseURL = 'https://exampleapplication-2e5a4.firebaseio.com/';
+  late FirebaseDatabase _database;
+  late DatabaseReference reference;
+  String _databaseURL = 'https://modutour-9a606.firebaseio.com/';
 
   double opacity = 0;
-  AnimationController? _animationController;
-  Animation? _animation;
-  TextEditingController? _idTextController;
-  TextEditingController? _pwTextController;
+  late AnimationController _animationController;
+  late Animation _animation;
+  late TextEditingController _idTextController;
+  late TextEditingController _pwTextController;
 
   @override
   void initState() {
     super.initState();
 
-    _idTextController = TextEditingController();
-    _pwTextController = TextEditingController();
+    _idTextController = TextEditingController(text: 'torr');
+    _pwTextController = TextEditingController(text: '123456');
 
     _animationController =
         AnimationController(duration: Duration(seconds: 3), vsync: this);
     _animation =
-        Tween<double>(begin: 0, end: pi * 2).animate(_animationController!);
-    _animationController!.repeat();
+        Tween<double>(begin: 0, end: pi * 2).animate(_animationController);
+    _animationController.repeat();
     Timer(Duration(seconds: 2), () {
       setState(() {
-        opacity = 1; // 페이지 생성 후 2초 후 타이머 시작
+        opacity = 1;
       });
     });
 
-    _database = FirebaseDatabase(databaseURL: _databaseURL);
-    reference = _database?.reference().child('user');
+    _database = FirebaseDatabase.instance;
+    reference = _database.ref().child('user');
   }
 
   @override
   void dispose() {
-    _animationController?.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -59,10 +59,10 @@ class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
           child: Column(
             children: <Widget>[
               AnimatedBuilder(
-                animation: _animationController!,
+                animation: _animationController,
                 builder: (context, widget) {
                   return Transform.rotate(
-                    angle: _animation?.value,
+                    angle: _animation.value,
                     child: widget,
                   );
                 },
@@ -117,30 +117,30 @@ class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
                             child: Text('회원가입')),
                         MaterialButton(
                             onPressed: () {
-                              if (_idTextController?.value.text.length == 0 ||
-                                  _pwTextController?.value.text.length == 0) {
+                              if (_idTextController.value.text.length == 0 ||
+                                  _pwTextController.value.text.length == 0) {
                                 makeDialog('빈칸이 있습니다');
                               } else {
-                                reference!
-                                    .child(_idTextController!.value.text)
+                                reference
+                                    .child(_idTextController.value.text)
                                     .onValue
                                     .listen((event) {
                                   if (event.snapshot.value == null) {
                                     makeDialog('아이디가 없습니다');
                                   } else {
-                                    reference!
-                                        .child(_idTextController!.value.text)
+                                    reference
+                                        .child(_idTextController.value.text)
                                         .onChildAdded
                                         .listen((event) {
                                       User user =
                                           User.fromSnapshot(event.snapshot);
                                       var bytes = utf8
-                                          .encode(_pwTextController!.value.text);
+                                          .encode(_pwTextController.value.text);
                                       var digest = sha1.convert(bytes);
                                       if (user.pw == digest.toString()) {
                                         Navigator.of(context)
                                             .pushReplacementNamed('/main',
-                                                arguments: _idTextController!
+                                                arguments: _idTextController
                                                     .value.text);
                                       } else {
                                         makeDialog('비밀번호가 틀립니다');

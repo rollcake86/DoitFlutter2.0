@@ -1,35 +1,42 @@
 {
   "project_info": {
-    "project_number": "271626870778",
-    "firebase_url": "https://widgetapplication-98eee.firebaseio.com",
-    "project_id": "widgetapplication-98eee",
-    "storage_bucket": "widgetapplication-98eee.appspot.com"
+    "project_number": "340538139451",
+    "firebase_url": "https://exampleapplication-2e5a4.firebaseio.com",
+    "project_id": "exampleapplication-2e5a4",
+    "storage_bucket": "exampleapplication-2e5a4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:271626870778:android:c2f8834b2c4ce25d5dce43",
+        "mobilesdk_app_id": "1:340538139451:android:120da507e3a728f9810d1e",
         "android_client_info": {
           "package_name": "com.carrot.modu_tour"
         }
       },
       "oauth_client": [
         {
-          "client_id": "271626870778-nkm4gbue860gd7o8fp2geb7ra63rv3g8.apps.googleusercontent.com",
+          "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAi6dwOmnH7T5p8LRGHxbP2KRK6JzMSbK8"
+          "current_key": "AIzaSyCF6L3pO6uAE-BA17ZaiVpTN-CnsbMYKKc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "271626870778-nkm4gbue860gd7o8fp2geb7ra63rv3g8.apps.googleusercontent.com",
+              "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "340538139451-nhoqmiq3s2606utm83lgcmc50002ir7r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carrot.selfCheckModule"
+              }
             }
           ]
         }
@@ -37,28 +44,35 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:271626870778:android:0127a7f2f7289a255dce43",
+        "mobilesdk_app_id": "1:340538139451:android:598c0195527556b3810d1e",
         "android_client_info": {
-          "package_name": "com.rollcake.firebaseexample"
+          "package_name": "com.carrot.selfcheckapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "271626870778-nkm4gbue860gd7o8fp2geb7ra63rv3g8.apps.googleusercontent.com",
+          "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAi6dwOmnH7T5p8LRGHxbP2KRK6JzMSbK8"
+          "current_key": "AIzaSyCF6L3pO6uAE-BA17ZaiVpTN-CnsbMYKKc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "271626870778-nkm4gbue860gd7o8fp2geb7ra63rv3g8.apps.googleusercontent.com",
+              "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "340538139451-nhoqmiq3s2606utm83lgcmc50002ir7r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carrot.selfCheckModule"
+              }
             }
           ]
         }
@@ -66,70 +80,303 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:271626870778:android:84a8dc3ee53dcd135dce43",
+        "mobilesdk_app_id": "1:340538139451:android:cbb99b769cef1b1c",
+        "android_client_info": {
+          "package_name": "com.example.beast.chatbot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340538139451-01tgqkbflfc950pu2nktm5u12ie1dpds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.beast.chatbot",
+            "certificate_hash": "1511c89fcd68e75eb4247d1208f6d6631bc2966f"
+          }
+        },
+        {
+          "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF6L3pO6uAE-BA17ZaiVpTN-CnsbMYKKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "340538139451-nhoqmiq3s2606utm83lgcmc50002ir7r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carrot.selfCheckModule"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340538139451:android:26c43aed7a1c2174",
+        "android_client_info": {
+          "package_name": "com.rollcake.data.databaseexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340538139451-dd6ers7m8h5rh7hdb9v6dmuoqj6gv0os.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rollcake.data.databaseexample",
+            "certificate_hash": "85355bba4fdd9c87ea1e4aa9b7e435121e7e9555"
+          }
+        },
+        {
+          "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF6L3pO6uAE-BA17ZaiVpTN-CnsbMYKKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "340538139451-nhoqmiq3s2606utm83lgcmc50002ir7r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carrot.selfCheckModule"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340538139451:android:cac4b4eaf481901b",
+        "android_client_info": {
+          "package_name": "com.rollcake.indi.indiplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340538139451-fqpak7h0v06r66artetevqiuuvi3ckul.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rollcake.indi.indiplace",
+            "certificate_hash": "1511c89fcd68e75eb4247d1208f6d6631bc2966f"
+          }
+        },
+        {
+          "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF6L3pO6uAE-BA17ZaiVpTN-CnsbMYKKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "340538139451-nhoqmiq3s2606utm83lgcmc50002ir7r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carrot.selfCheckModule"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340538139451:android:14ea7f1b9a47eb15",
+        "android_client_info": {
+          "package_name": "com.rollcake.indi.indiplaceandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340538139451-sq62gg2egm53j7ng2tj33lf371aq6cc1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rollcake.indi.indiplaceandroid",
+            "certificate_hash": "1e395b873726e26f4362be4ba504b498c7f3d628"
+          }
+        },
+        {
+          "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF6L3pO6uAE-BA17ZaiVpTN-CnsbMYKKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "340538139451-nhoqmiq3s2606utm83lgcmc50002ir7r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carrot.selfCheckModule"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340538139451:android:d09676519dc5ac0f",
+        "android_client_info": {
+          "package_name": "com.rollcake.indiplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340538139451-dq15fn3ek722cpfihinoeevfdig3auhm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rollcake.indiplace",
+            "certificate_hash": "1511c89fcd68e75eb4247d1208f6d6631bc2966f"
+          }
+        },
+        {
+          "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF6L3pO6uAE-BA17ZaiVpTN-CnsbMYKKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "340538139451-nhoqmiq3s2606utm83lgcmc50002ir7r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carrot.selfCheckModule"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340538139451:android:86193235d3b79d06",
+        "android_client_info": {
+          "package_name": "com.rollcake.mobiletest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340538139451-sbmlj9lintha2hf9kfq1o2akgdllvq4f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rollcake.mobiletest",
+            "certificate_hash": "85355bba4fdd9c87ea1e4aa9b7e435121e7e9555"
+          }
+        },
+        {
+          "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF6L3pO6uAE-BA17ZaiVpTN-CnsbMYKKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "340538139451-nhoqmiq3s2606utm83lgcmc50002ir7r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carrot.selfCheckModule"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340538139451:android:12a0f3c272641810810d1e",
         "android_client_info": {
           "package_name": "com.rollcake.modutour"
         }
       },
       "oauth_client": [
         {
-          "client_id": "271626870778-nkm4gbue860gd7o8fp2geb7ra63rv3g8.apps.googleusercontent.com",
+          "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAi6dwOmnH7T5p8LRGHxbP2KRK6JzMSbK8"
+          "current_key": "AIzaSyCF6L3pO6uAE-BA17ZaiVpTN-CnsbMYKKc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "271626870778-nkm4gbue860gd7o8fp2geb7ra63rv3g8.apps.googleusercontent.com",
+              "client_id": "340538139451-91nhnmeqvvr53n55ehmc1k6gcdnrn0rc.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "340538139451-nhoqmiq3s2606utm83lgcmc50002ir7r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carrot.selfCheckModule"
+              }
             }
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:271626870778:android:c857999dd06c6575",
-        "android_client_info": {
-          "package_name": "com.rollcake.parkingalert"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "271626870778-nmhftc4ban64nde5i02i81q5hpg7gjt3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.rollcake.parkingalert",
-            "certificate_hash": "85355bba4fdd9c87ea1e4aa9b7e435121e7e9555"
-          }
-        },
-        {
-          "client_id": "271626870778-nkm4gbue860gd7o8fp2geb7ra63rv3g8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAi6dwOmnH7T5p8LRGHxbP2KRK6JzMSbK8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "271626870778-nkm4gbue860gd7o8fp2geb7ra63rv3g8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      },
-      "admob_app_id": "ca-app-pub-4874780746681507~9700901568"
     }
   ],
   "configuration_version": "1"

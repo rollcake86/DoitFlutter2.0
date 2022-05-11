@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:http/http.dart' as http;
-import 'package:modu_tour/data/tour.dart';
-import 'package:modu_tour/data/listData.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../data/listData.dart';
+import '../data/tour.dart';
 import 'tourDetailPage.dart';
 
 class MapPage extends StatefulWidget {

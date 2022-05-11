@@ -1,4 +1,4 @@
-package com.carrot.modu_tour
+package com.rollcake.modutour
 
 import io.flutter.embedding.android.FlutterActivity
 

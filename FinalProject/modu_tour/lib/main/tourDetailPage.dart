@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:modu_tour/data/disableInfo.dart';
-import 'package:modu_tour/data/reviews.dart';
 import 'dart:math' as math;
-import 'package:modu_tour/data/tour.dart';
+
+import '../data/disableInfo.dart';
+import '../data/reviews.dart';
+import '../data/tour.dart';
 
 class TourDetailPage extends StatefulWidget {
   final TourData? tourData;

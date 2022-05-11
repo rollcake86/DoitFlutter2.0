@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:modu_tour/data/user.dart';
+import 'package:modutour/data/user.dart';
 
 class SignPage extends StatefulWidget {
   @override
@@ -11,13 +11,12 @@ class SignPage extends StatefulWidget {
 }
 
 class _SignPage extends State<SignPage> {
-  FirebaseDatabase? _database;
-  DatabaseReference? reference;
-  String _databaseURL = 'https://exampleapplication-2e5a4.firebaseio.com/';
+  late FirebaseDatabase _database;
+  late DatabaseReference reference;
 
-  TextEditingController? _idTextController;
-  TextEditingController? _pwTextController;
-  TextEditingController? _pwCheckTextController;
+  late TextEditingController _idTextController;
+  late TextEditingController _pwTextController;
+  late TextEditingController _pwCheckTextController;
 
   @override
   void initState() {
@@ -26,15 +25,15 @@ class _SignPage extends State<SignPage> {
     _pwTextController = TextEditingController();
     _pwCheckTextController = TextEditingController();
 
-    _database = FirebaseDatabase(databaseURL: _databaseURL);
-    reference = _database?.reference().child('user');
+    _database = FirebaseDatabase.instance ;
+    reference = _database.ref().child('user');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('회원가입'),
+        title: Text('회원 가입'),
       ),
       body: Container(
         child: Center(
@@ -47,9 +46,12 @@ class _SignPage extends State<SignPage> {
                   maxLines: 1,
                   decoration: InputDecoration(
                       hintText: '4자 이상 입력해주세요',
-                      labelText: '아이디', border: OutlineInputBorder()),),),
+                      labelText: '아이디', border: OutlineInputBorder()),
+                ),
+              ),
               SizedBox(
-                height: 20,),
+                height: 20,
+              ),
               SizedBox(
                 width: 200,
                 child: TextField(
@@ -58,32 +60,39 @@ class _SignPage extends State<SignPage> {
                   maxLines: 1,
                   decoration: InputDecoration(
                       hintText: '6자 이상 입력해주세요',
-                      labelText: '비밀번호', border: OutlineInputBorder()),),),
+                      labelText: '비밀번호', border: OutlineInputBorder()),
+                ),
+              ),
               SizedBox(
-                height: 20,),
+                height: 20,
+              ),
               SizedBox(
                 width: 200,
                 child: TextField(
                   controller: _pwCheckTextController,
                   obscureText: true,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: '비밀번호확인',
-                      border: OutlineInputBorder()),),),
+                  decoration: InputDecoration(
+                      labelText: '비밀번호확인', border: OutlineInputBorder()),
+                ),
+              ),
               SizedBox(
-                height: 20,),
-              MaterialButton(
+                height: 20,
+              ),
+              FlatButton(
                 onPressed: () {
-                  if (_idTextController!.value.text.length >= 4 &&
-                      _pwTextController!.value.text.length >= 6) {
-                    if (_pwTextController!.value.text ==
-                        _pwCheckTextController!.value.text) {
-                      var bytes = utf8.encode(_pwTextController!.value.text);
+                  if(_idTextController.value.text.length >= 4 && _pwTextController.value.text.length >= 6){
+                    if (_pwTextController.value.text ==
+                        _pwCheckTextController.value.text) {
+                      var bytes = utf8.encode(_pwTextController.value.text);
                       var digest = sha1.convert(bytes);
-                      reference!
-                          .child(_idTextController!.value.text)
+                      reference
+                          .child(_idTextController.value.text)
                           .push()
-                          .set(User(_idTextController!.value.text,
-                          digest.toString(), DateTime.now().toIso8601String())
+                          .set(User(
+                          _idTextController.value.text,
+                          digest.toString(),
+                          DateTime.now().toIso8601String())
                           .toJson())
                           .then((_) {
                         Navigator.of(context).pop();
@@ -91,19 +100,25 @@ class _SignPage extends State<SignPage> {
                     } else {
                       makeDialog('비밀번호가 틀립니다');
                     }
-                  } else {
+                  }else{
                     makeDialog('길이가 짧습니다');
                   }
                 },
                 child: Text(
-                  '회원가입',
-                  style: TextStyle(color: Colors.white),),
-                color: Colors.blueAccent,)],
-            mainAxisAlignment: MainAxisAlignment.center,),
-        ),),);
+                  '회원 가입',
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Colors.blueAccent,
+              )
+            ],
+            mainAxisAlignment: MainAxisAlignment.center,
+          ),
+        ),
+      ),
+    );
   }
 
-  void makeDialog(String text) {
+  void makeDialog(String text){
     showDialog(
         context: context,
         builder: (context) {
