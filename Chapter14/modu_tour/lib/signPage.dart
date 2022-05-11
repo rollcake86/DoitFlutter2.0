@@ -11,13 +11,13 @@ class SignPage extends StatefulWidget {
 }
 
 class _SignPage extends State<SignPage> {
-  FirebaseDatabase _database;
-  DatabaseReference reference;
+  late FirebaseDatabase _database;
+  late DatabaseReference reference;
   String _databaseURL = 'https://modutour-9a606.firebaseio.com/';
 
-  TextEditingController _idTextController;
-  TextEditingController _pwTextController;
-  TextEditingController _pwCheckTextController;
+  late TextEditingController _idTextController;
+  late TextEditingController _pwTextController;
+  late TextEditingController _pwCheckTextController;
 
   @override
   void initState() {
@@ -26,8 +26,8 @@ class _SignPage extends State<SignPage> {
     _pwTextController = TextEditingController();
     _pwCheckTextController = TextEditingController();
 
-    _database = FirebaseDatabase(databaseURL: _databaseURL);
-    reference = _database.reference().child('user');
+    _database = FirebaseDatabase.instance ;
+    reference = _database.ref().child('user');
   }
 
   @override

@@ -1,27 +1,23 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'memoPage.dart';
 
-
-
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized(); // runApp 시작전에 Flutter 엔진과 위젯의 바인딩이 미리 완료!
+  await Firebase.initializeApp();
   MobileAds.instance.initialize();
-
   runApp(MyApp());
 }
 
-
-
 class MyApp extends StatelessWidget {
-  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   static FirebaseAnalyticsObserver observer =
-      FirebaseAnalyticsObserver(analytics: analytics);
+  FirebaseAnalyticsObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {

@@ -10,9 +10,9 @@ class Memo {
 
   Memo.fromSnapshot(DataSnapshot snapshot)
       : key = snapshot.key,
-        title = snapshot.value['title'],
-        content = snapshot.value['content'],
-        createTime = snapshot.value['createTime'];
+        title = (snapshot.value as Map)['title'],
+        content = (snapshot.value as Map)['content'],
+        createTime = (snapshot.value as Map)['createTime'];
 
   toJson() {
     return {

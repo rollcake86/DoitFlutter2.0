@@ -13,15 +13,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
-  FirebaseDatabase _database;
-  DatabaseReference reference;
+  late FirebaseDatabase _database;
+  late DatabaseReference reference;
   String _databaseURL = 'https://modutour-9a606.firebaseio.com/';
 
   double opacity = 0;
-  AnimationController _animationController;
-  Animation _animation;
-  TextEditingController _idTextController;
-  TextEditingController _pwTextController;
+  late AnimationController _animationController;
+  late Animation _animation;
+  late TextEditingController _idTextController;
+  late TextEditingController _pwTextController;
 
   @override
   void initState() {
@@ -110,12 +110,12 @@ class _LoginPage extends State<LoginPage> with SingleTickerProviderStateMixin {
                     ),
                     Row(
                       children: <Widget>[
-                        FlatButton(
+                        MaterialButton(
                             onPressed: () {
                               Navigator.of(context).pushNamed('/sign');
                             },
                             child: Text('회원가입')),
-                        FlatButton(
+                        MaterialButton(
                             onPressed: () {
                               if (_idTextController.value.text.length == 0 ||
                                   _pwTextController.value.text.length == 0) {

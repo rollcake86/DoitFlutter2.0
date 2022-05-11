@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'memo.dart';
@@ -82,7 +81,6 @@ class _MemoPage extends State<MemoPage> {
     channel = const AndroidNotificationChannel(
       'high_importance_channel', // id
       'High Importance Notifications', // title
-      'This channel is used for important notifications.', // description
       importance: Importance.high,
     );
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -119,7 +117,6 @@ class _MemoPage extends State<MemoPage> {
               android: AndroidNotificationDetails(
                 channel!.id,
                 channel!.name,
-                channel!.description,
                 icon: 'launch_background',
               ),
             ));
