@@ -1,5 +1,5 @@
 # DoitFlutter2.0
-2.0 버전업된 Doit Flutter 코드입니다.
+2.0 버전업된 Doit Flutter 코드입니다..
 
 
 # 변경사항
