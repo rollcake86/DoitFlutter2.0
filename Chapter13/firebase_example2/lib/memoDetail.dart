@@ -52,7 +52,7 @@ class _MemoDetailPage extends State<MemoDetailPage> {
                   Memo memo = Memo(titleController!.value.text,
                       contentController!.value.text, widget.memo.createTime);
                   widget.reference
-                      .child(widget.memo.createTime.toString())
+                      .child(widget.memo.key!)
                       .set(memo.toJson())
                       .then((_) {
                     Navigator.of(context).pop(memo);
