@@ -43,7 +43,7 @@ class _SecondPage extends State<SecondPage>
           child: Column(
             children: <Widget>[
               AnimatedBuilder(
-                animation: _rotateAnimation!,
+                animation: _animationController!,
                 builder: (context, widget) {
                   return Transform.translate(
                     offset: _transAnimation!.value,
